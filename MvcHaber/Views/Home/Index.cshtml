@@ -1,0 +1,78 @@
+﻿@using MvcHaber.Models
+
+@model IndexModel
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("HaberleriListele","Home",FormMethod.Post,new {@class="form-horizontal",role="Form" }))
+    {
+
+   
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Haber Listesi</h1>
+            <p1> Sectiginiz kategorideki haberler listelenir.</p1>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label class="control-label">Kategori Seciniz :</label>
+
+            </div>
+            <div class="col-sm-3">
+                <select name="secilenKategori" class="form-control">
+                    @foreach (Kategori kategorim in Model.Kategoriler)
+                    {
+                        <option>@kategorim.KategoriAdi</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-offset-3">
+            <button class="btn-success">Haberleri Listele</button>
+        </div>
+
+       <div>
+
+       </div> 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Haber Basligi</th>
+
+                    <th>Yorum Sayisi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @foreach (Haber _haber in Model.Haberler)
+                {
+                    <tr>
+                        <td> <a href="/Home/HaberDetay?haberID=@_haber.Id">@_haber.Baslik</a></td>
+                       
+                        <td>@_haber.Yorumlar.Count</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+    }
+</body>
+</html>

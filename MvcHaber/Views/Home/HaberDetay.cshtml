@@ -1,0 +1,47 @@
+﻿@using MvcHaber.Models
+@model Haber
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HaberDetay</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container"> 
+        <div class="jumbotron">
+            <h1>@Model.Baslik</h1>
+            <p> @Model.Detay</p>
+
+        </div>
+
+        <h3> Yorumlar</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Yorum</th>
+                    <th>Tarih</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Yorum _yorum in Model.Yorumlar)
+                {
+                    <tr>
+                        <td>@_yorum.Icerik</td>
+                        <td>@_yorum.Tarih</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</body>
+</html>
